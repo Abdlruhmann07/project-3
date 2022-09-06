@@ -22,6 +22,24 @@ spec:
             cpu: 500m
           requests:
             cpu: 200m
+    
+    env:
+        -name: aws_secrets
+          valuefrom:
+            secretKeyRef:
+              name: mysecret
+
+        -name: Conifg1
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+
+            -name: Secrets
+              valuefrom:
+                secretKeyRef:
+                  name: env-secret
+
+      
 
 ---
 apiVersion: v1

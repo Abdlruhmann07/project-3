@@ -23,21 +23,73 @@ spec:
           requests:
             cpu: 200m
   env:
-         -name: aws_secrets
-          valuefrom:
-            secretKeyRef:
-              name: mysecret
-
-
-        -name: Conifg1
+    
+        -name: POSTGRES_USERNAME
           valuefrom:
            configMapKeyRef:
             name: env-configmap
+            key: POSTGRES_USERNAME
 
-            -name: Secrets
+            -name: POSTGRES_PASSWORD
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: POSTGRES_PASSWORD
+
+               -name: POSTGRES_HOST
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: POSTGRES_HOST
+
+               -name: POSTGRES_DB
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: POSTGRES_DB
+
+              -name: AWS_BUCKET
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: AWS_BUCKET
+
+              -name: AWS_REGION
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: AWS_REGION
+
+               -name: JWT_SECRET
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: JWT_SECRET
+
+                 -name: URL
+          valuefrom:
+           configMapKeyRef:
+            name: env-configmap
+            key: URL
+
+
+            -name: POSTGRESS_USERNAME
               valuefrom:
                 secretKeyRef:
                   name: env-secret
+                  key: POSTGRESS_USERNAME
+
+              -name: POSTGRESS_PASSWORD
+              valuefrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRESS_PASSWORD
+
+             -name: credentials
+          valuefrom:
+            secretKeyRef:
+              name: credentials
+
 
 ---
 apiVersion: v1
